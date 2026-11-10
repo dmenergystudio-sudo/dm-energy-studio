@@ -1,0 +1,6 @@
+﻿CARPETA: Temporadas > Octubre
+RUTA: designs/temporadas/octubre/
+
+Pon aqui los disenos de esta categoria (PNG, JPG, WEBP, GIF o SVG).
+Usa vistas previas livianas: cuadradas y de menos de 300 KB.
+Puedes borrar este archivo cuando subas imagenes.

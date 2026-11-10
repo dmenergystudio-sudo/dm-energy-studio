@@ -1,0 +1,5 @@
+﻿CARPETA: temporadas
+RUTA: designs/temporadas/
+
+Esta carpeta agrupa los 12 meses del año.
+Las imagenes van dentro de cada subcarpeta, no aqui.

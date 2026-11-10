@@ -1,2 +1,5 @@
-Pon aqui los disenos de esta categoria (PNG, JPG, WEBP).
-Puedes borrar este archivo cuando subas el primero.
+﻿CARPETA: designs
+RUTA: designs/
+
+Contiene todas las imagenes de la pagina, ordenadas por categoria.
+No cambies los nombres de las carpetas.

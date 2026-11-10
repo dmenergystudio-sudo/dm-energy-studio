@@ -1,0 +1,5 @@
+﻿CARPETA: paises-y-cultura
+RUTA: designs/paises-y-cultura/
+
+Esta carpeta agrupa las categorias de paises y cultura.
+Las imagenes van dentro de cada subcarpeta, no aqui.
