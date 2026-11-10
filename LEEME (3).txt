@@ -1,6 +1,0 @@
-﻿CARPETA: Camisetas > Año Nuevo
-RUTA: designs/camisetas/ano-nuevo/
-
-Pon aqui los disenos de esta categoria (PNG, JPG, WEBP, GIF o SVG).
-Usa vistas previas livianas: cuadradas y de menos de 300 KB.
-Puedes borrar este archivo cuando subas imagenes.
