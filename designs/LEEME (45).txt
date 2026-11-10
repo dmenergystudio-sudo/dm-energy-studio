@@ -1,0 +1,6 @@
+﻿CARPETA: Inicio (pantalla principal)
+RUTA: designs/inicio/
+
+Las imagenes de esta carpeta se muestran en la pantalla de Inicio.
+Usa vistas previas livianas: cuadradas y de menos de 300 KB.
+Puedes borrar este archivo cuando subas imagenes.

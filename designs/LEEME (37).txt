@@ -1,0 +1,6 @@
+﻿CARPETA: Camisetas > Películas y series
+RUTA: designs/camisetas/peliculas-y-series/
+
+Pon aqui los disenos de esta categoria (PNG, JPG, WEBP, GIF o SVG).
+Usa vistas previas livianas: cuadradas y de menos de 300 KB.
+Puedes borrar este archivo cuando subas imagenes.

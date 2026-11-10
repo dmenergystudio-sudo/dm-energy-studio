@@ -1,0 +1,5 @@
+﻿CARPETA: designs
+RUTA: designs/
+
+Contiene todas las imagenes de la pagina, ordenadas por categoria.
+No cambies los nombres de las carpetas.
