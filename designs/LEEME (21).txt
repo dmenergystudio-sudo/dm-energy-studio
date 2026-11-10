@@ -1,5 +1,0 @@
-﻿CARPETA: camisetas
-RUTA: designs/camisetas/
-
-Esta carpeta agrupa las 21 categorias de camisetas.
-Las imagenes van dentro de cada subcarpeta, no aqui.
