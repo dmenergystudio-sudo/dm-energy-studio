@@ -105,6 +105,143 @@
 /* ===== SEMITONO DTF ===== */
 .ht-shell{width:100%;max-width:1400px;margin:0 auto;color:#e5e7eb}.ht-panel{background:rgba(17,24,39,.9);border:1px solid #374151;border-radius:14px;padding:14px}.ht-label{display:block;font-size:12px;color:#cbd5e1;margin-bottom:5px}.ht-control{width:100%;background:#111827;border:1px solid #4b5563;border-radius:8px;padding:9px;color:#f9fafb;font-size:13px}.ht-btn{padding:9px 13px;border-radius:8px;font-size:12px;font-weight:700;background:#334155;color:white}.ht-btn.primary{background:#0891b2}.ht-btn.pink{background:#be185d}.ht-btn:disabled{opacity:.45;cursor:not-allowed}.ht-preview{min-height:360px;display:flex;align-items:center;justify-content:center;overflow:auto;border:1px solid #374151;border-radius:10px;padding:12px;background-color:#171d2b;background-image:linear-gradient(45deg,#252d3b 25%,transparent 25%),linear-gradient(-45deg,#252d3b 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#252d3b 75%),linear-gradient(-45deg,transparent 75%,#252d3b 75%);background-size:20px 20px;background-position:0 0,0 10px,10px -10px,-10px 0}.ht-preview canvas{max-width:100%;height:auto;max-height:70vh;object-fit:contain;background:transparent}.ht-muted{font-size:11px;color:#9ca3af;line-height:1.5}
 
+
+/* ===== ACTUALIZACION VISUAL DM ENERGY STUDIO ===== */
+#appSidebar nav .fa-solid,#appSidebar nav .fa-brands{display:none!important}
+#appSidebar nav>div:not(#menuRoot)>a{gap:0!important}
+#menuRoot>div>button,#menuRoot>a{border-color:rgba(71,85,105,.28)!important;background:rgba(15,23,42,.34)!important}
+#menuRoot>div>button>div span{font-size:11px!important;text-transform:uppercase;letter-spacing:.16em;color:#aab4c5!important}
+#menuRoot .dropdown-content{border-left-color:rgba(6,182,212,.22)!important}
+#menuRoot .menu-link{color:#aeb8c8!important;padding:9px 12px!important;margin:2px 0;transition:all .18s ease}
+#menuRoot .menu-link:hover{color:#fff!important;background:linear-gradient(90deg,rgba(236,72,153,.16),rgba(236,72,153,.035))!important;box-shadow:inset 2px 0 #ec4899}
+#menuRoot .menu-link.dm-active{color:#fff!important;background:rgba(236,72,153,.12)!important;box-shadow:inset 3px 0 #ec4899}
+#viewer-content .dm-gallery-search{width:100%;padding:2px;border-radius:13px;background:linear-gradient(100deg,#22d3ee,#d946ef);margin-bottom:16px}
+#viewer-content .dm-gallery-search input{width:100%;background:#0b1020;color:#fff;border:0;border-radius:11px;padding:12px 15px;outline:none}
+#viewer-content .dm-gallery-card{position:relative;border:1px solid transparent!important;background:linear-gradient(#0b1020,#0b1020) padding-box,linear-gradient(135deg,#22d3ee,#d946ef) border-box!important;overflow:hidden}
+#viewer-content .dm-gallery-card:hover{box-shadow:0 0 20px rgba(34,211,238,.18),0 0 25px rgba(217,70,239,.14);transform:translateY(-2px)}
+#viewer-content .dm-gallery-card .dm-file-name{opacity:0;transition:opacity .18s ease}
+#viewer-content .dm-gallery-card:hover .dm-file-name{opacity:1}
+.dm-carousel{width:100%;max-width:1500px;margin:0 auto 22px;position:relative;touch-action:pan-y}
+.dm-slide{display:none;position:relative;min-height:300px;border-radius:22px;overflow:hidden;border:2px solid transparent;background:linear-gradient(110deg,#080d19,#17102d) padding-box,linear-gradient(110deg,#22d3ee,#e946a7) border-box;box-shadow:0 0 24px rgba(34,211,238,.09)}
+.dm-slide.dm-show{display:flex;animation:dmFade .35s ease}
+@keyframes dmFade{from{opacity:.5;transform:translateY(3px)}to{opacity:1;transform:none}}
+.dm-slide-copy{position:relative;z-index:2;padding:34px 5%;width:56%;display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+.dm-slide h2{font-size:clamp(26px,4vw,48px);line-height:1.06;font-weight:900;color:#fff;margin:7px 0}
+.dm-slide h2 em{font-style:normal;color:#22d3ee}
+.dm-slide p{color:#cbd5e1;font-size:15px;margin:8px 0 18px;max-width:560px}
+.dm-kicker{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:#ec4899;font-weight:800}
+.dm-cta{display:inline-block;border-radius:999px;padding:11px 22px;font-size:12px;letter-spacing:.08em;font-weight:900;color:#07111d;background:linear-gradient(100deg,#22d3ee,#e946a7);cursor:pointer}
+.dm-slide-art{width:44%;height:300px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.dm-slide-art img.dm-cat{height:100%;width:100%;object-fit:cover;object-position:center}
+.dm-slide-art img.dm-logo{max-width:72%;max-height:76%;object-fit:contain;filter:drop-shadow(0 0 18px rgba(34,211,238,.22))}
+.dm-slide-art.logo-only{width:38%}
+.dm-banner-tools{width:44%;padding:30px 4%;display:grid;grid-template-columns:repeat(3,1fr);gap:9px;align-content:center}
+.dm-tool-chip{border:1px solid transparent;background:linear-gradient(#10172a,#10172a) padding-box,linear-gradient(135deg,#22d3ee,#e946a7) border-box;border-radius:12px;padding:15px 7px;text-align:center;font-size:12px;font-weight:700;color:#e2e8f0}
+.dm-slide-price{width:44%;display:flex;gap:12px;padding:24px 4%;align-items:center}
+.dm-price-card{flex:1;border:1px solid transparent;background:linear-gradient(#10172a,#10172a) padding-box,linear-gradient(135deg,#22d3ee,#e946a7) border-box;border-radius:16px;padding:22px 10px;text-align:center}
+.dm-price-card strong{display:block;font-size:clamp(25px,4vw,42px);color:#fff;margin-top:8px}
+.dm-carousel-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:5;border:1px solid #475569;background:#080d19cc;color:#fff;border-radius:50%;width:42px;height:42px;opacity:0;transition:opacity .2s}
+.dm-carousel:hover .dm-carousel-arrow{opacity:1}.dm-carousel-arrow.left{left:14px}.dm-carousel-arrow.right{right:14px}
+.dm-carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:12px}
+.dm-carousel-dots button{width:9px;height:9px;border-radius:99px;background:#475569}.dm-carousel-dots button.active{width:28px;background:linear-gradient(90deg,#22d3ee,#e946a7)}
+@media(max-width:700px){.dm-slide.dm-show{display:block;min-height:0}.dm-slide{min-height:0;aspect-ratio:1/1}.dm-slide-copy{position:absolute;inset:auto 0 0;width:100%;padding:20px;background:linear-gradient(transparent,rgba(4,8,18,.96) 35%);min-height:58%;justify-content:flex-end}.dm-slide h2{font-size:clamp(23px,7vw,34px)}.dm-slide p{font-size:12px;margin:5px 0 12px}.dm-slide-art{position:absolute;inset:0;width:100%;height:100%;opacity:.64}.dm-slide-art img.dm-cat{object-position:30% center}.dm-slide-art.logo-only{width:100%}.dm-banner-tools{display:none}.dm-slide-price{display:none}.dm-carousel-arrow{opacity:.8;width:34px;height:34px}.dm-carousel-arrow.left{left:8px}.dm-carousel-arrow.right{right:8px}}
+
+/* ===== MENU DM ENERGY: TIPOGRAFIA CON PRESENCIA ===== */
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@500;600;700;800&family=Rajdhani:wght@500;600;700&display=swap');
+/* Los títulos de cada sección tienen carácter tecnológico y más presencia */
+#menuRoot>div>button,
+#menuRoot>a{
+  min-height:58px!important;padding:15px 16px!important;border-radius:14px!important;
+  border:1px solid rgba(34,211,238,.22)!important;
+  background:linear-gradient(105deg,rgba(16,28,48,.96),rgba(28,13,39,.88))!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 5px 16px rgba(0,0,0,.18)!important;
+  transition:all .22s ease!important;
+}
+#menuRoot>div>button:hover,#menuRoot>a:hover{
+  border-color:rgba(236,72,153,.72)!important;
+  background:linear-gradient(105deg,rgba(8,48,64,.98),rgba(65,15,55,.94))!important;
+  box-shadow:0 0 16px rgba(236,72,153,.18),inset 0 0 18px rgba(34,211,238,.06)!important;
+  transform:translateX(2px);
+}
+#menuRoot>div>button>div span,
+#menuRoot>a>div span{
+  font-family:'Oxanium',sans-serif!important;font-size:15px!important;font-weight:800!important;
+  letter-spacing:.105em!important;text-transform:uppercase!important;
+  color:#f1f5f9!important;text-shadow:0 0 12px rgba(34,211,238,.18)!important;
+}
+/* Opciones: letras más grandes, elegantes y fáciles de leer */
+#menuRoot .menu-link{
+  display:block!important;position:relative!important;
+  font-family:'Rajdhani',sans-serif!important;font-size:19px!important;
+  line-height:1.15!important;font-weight:700!important;letter-spacing:.025em!important;
+  color:#d8e1ef!important;padding:10px 14px 10px 18px!important;
+  margin:3px 0!important;border-radius:9px!important;
+  border-left:2px solid rgba(34,211,238,.25)!important;
+  background:rgba(8,15,29,.38)!important;
+  transition:all .2s ease!important;
+}
+#menuRoot .menu-link:hover{
+  color:#fff!important;border-left:3px solid #ec4899!important;
+  background:linear-gradient(90deg,rgba(236,72,153,.22),rgba(34,211,238,.07))!important;
+  text-shadow:0 0 12px rgba(236,72,153,.42)!important;
+  padding-left:22px!important;box-shadow:inset 0 0 16px rgba(236,72,153,.07),0 0 12px rgba(236,72,153,.08)!important;
+}
+#menuRoot .menu-link.dm-active{
+  color:#fff!important;font-weight:700!important;border-left:4px solid #ec4899!important;
+  background:linear-gradient(90deg,rgba(236,72,153,.25),rgba(34,211,238,.09))!important;
+  text-shadow:0 0 13px rgba(236,72,153,.4)!important;
+  box-shadow:inset 0 0 18px rgba(236,72,153,.08),0 0 13px rgba(236,72,153,.1)!important;
+}
+#menuRoot .dropdown-content{margin-top:7px!important;margin-bottom:8px!important;padding-left:12px!important;border-left-width:2px!important;border-left-color:rgba(34,211,238,.3)!important}
+@media(max-width:700px){
+ #menuRoot>div>button,#menuRoot>a{min-height:54px!important;padding:13px!important}
+ #menuRoot>div>button>div span,#menuRoot>a>div span{font-size:14px!important}
+ #menuRoot .menu-link{font-size:18px!important;padding-top:9px!important;padding-bottom:9px!important}
+}
+
+
+/* ===== AJUSTE FINO: NEON DEFINIDO, SIN HALO MAGENTA DIFUSO ===== */
+/* Los banners conservan su borde cian-magenta; la sombra exterior es neutra. */
+.dm-slide{box-shadow:0 10px 24px rgba(0,0,0,.48)!important;}
+/* El magenta aparece en los elementos interactivos, con contornos nítidos. */
+#menuRoot>div>button:hover,#menuRoot>a:hover{
+  border:1px solid #ec4899!important;
+  border-left:4px solid #ec4899!important;
+  background:linear-gradient(90deg,rgba(236,72,153,.16),rgba(9,16,31,.96) 72%)!important;
+  box-shadow:0 0 0 1px rgba(236,72,153,.22),0 3px 10px rgba(0,0,0,.28)!important;
+  transform:translateX(2px)!important;
+}
+#menuRoot>div>button>div span,#menuRoot>a>div span{
+  text-shadow:none!important;
+}
+#menuRoot .menu-link{
+  border:1px solid transparent!important;
+  border-left:3px solid rgba(34,211,238,.48)!important;
+  background:rgba(8,15,29,.55)!important;
+  text-shadow:none!important;
+  box-shadow:none!important;
+}
+#menuRoot .menu-link:hover{
+  color:#fff!important;
+  border:1px solid rgba(236,72,153,.9)!important;
+  border-left:4px solid #ec4899!important;
+  background:linear-gradient(90deg,rgba(236,72,153,.2),rgba(8,15,29,.92))!important;
+  text-shadow:none!important;
+  box-shadow:0 0 0 1px rgba(236,72,153,.18),0 3px 10px rgba(0,0,0,.28)!important;
+  padding-left:22px!important;
+}
+#menuRoot .menu-link.dm-active{
+  color:#fff!important;
+  border:1px solid rgba(236,72,153,.95)!important;
+  border-left:4px solid #ff3ca6!important;
+  background:linear-gradient(90deg,rgba(236,72,153,.24),rgba(8,15,29,.94))!important;
+  text-shadow:none!important;
+  box-shadow:inset 0 0 0 1px rgba(236,72,153,.1)!important;
+}
+#viewer-content .dm-gallery-card:hover{
+  box-shadow:0 5px 18px rgba(0,0,0,.38)!important;
+}
+
 </style>
 </head>
 <body class="bg-darkBg text-gray-100 font-sans antialiased h-screen overflow-hidden flex flex-col">
@@ -257,7 +394,7 @@
             <a href="https://www.tiktok.com/@dm_energ_studio" target="_blank" title="TikTok Oficial" class="w-9 h-9 rounded-lg bg-darkCard hover:bg-cyan-950/50 flex items-center justify-center text-gray-300 hover:text-cyan-400 border border-gray-700 transition">
                 <i class="fa-brands fa-tiktok"></i>
             </a>
-            <a href="https://wa.me/51933961056" target="_blank" title="Soporte WhatsApp" class="w-9 h-9 rounded-lg bg-darkCard hover:bg-emerald-950/50 flex items-center justify-center text-gray-300 hover:text-emerald-400 border border-gray-700 transition">
+            <a href="https://wa.me/51912355741" target="_blank" title="Soporte WhatsApp" class="w-9 h-9 rounded-lg bg-darkCard hover:bg-emerald-950/50 flex items-center justify-center text-gray-300 hover:text-emerald-400 border border-gray-700 transition">
                 <i class="fa-brands fa-whatsapp text-lg"></i>
             </a>
             <div class="h-6 w-[1px] bg-gray-700 mx-1"></div>
@@ -294,7 +431,7 @@
                         <i class="fa-brands fa-youtube text-lg"></i>
                         <span class="font-semibold text-sm">Clases & Tutoriales</span>
                     </a>
-                    <a href="https://wa.me/51933961056" target="_blank" class="w-full flex items-center space-x-3 p-3 rounded-xl bg-emerald-950/20 hover:bg-emerald-950/40 text-emerald-400 border border-emerald-900/40 transition">
+                    <a href="https://wa.me/51912355741" target="_blank" class="w-full flex items-center space-x-3 p-3 rounded-xl bg-emerald-950/20 hover:bg-emerald-950/40 text-emerald-400 border border-emerald-900/40 transition">
                         <i class="fa-brands fa-whatsapp text-lg"></i>
                         <span class="font-semibold text-sm">Soporte WhatsApp</span>
                     </a>
@@ -350,7 +487,7 @@
     <script>
         // ======== CONFIGURACIÓN (edita solo esto) ========
         const CONFIG = {
-            WHATSAPP: '51933961056',          // número para pagos y consultas (con código de país, sin +)
+            WHATSAPP: '51912355741',          // número para pagos y consultas (con código de país, sin +)
             LAUNCH: true,                     // true = se muestra el precio de lanzamiento
             PLANS: { mensual: { regular: 12, launch: 8 }, anual: { regular: 100, launch: 67 } },   // precios en US$
             PAYMENTS: [                       // los datos para pagar se envían por WhatsApp, no se publican
@@ -784,10 +921,11 @@
             return names;
         }
         const note = (msg) => `<p class="my-auto text-sm text-gray-400 text-center max-w-md">${msg}</p>`;
-        const gridHtml = (folder, names) => `<div class="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 content-start">` + names.map(n => {
+        const gridHtml = (folder, names) => `<div class="dm-gallery-search"><input id="dmGallerySearch" type="search" placeholder="Buscar diseño por nombre…" aria-label="Buscar diseño"></div><div id="dmGalleryGrid" class="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 content-start">` + names.map(n => {
             const src = folder + '/' + encodeURIComponent(n);
-            return `<a href="${src}" target="_blank" rel="noopener" class="bg-darkCard/40 border border-gray-800 hover:border-cyan-500/50 rounded-xl p-2 transition"><img src="${src}" loading="lazy" alt="${n}" class="w-full aspect-square object-contain rounded-lg bg-gray-900"><span class="block mt-2 text-[11px] text-gray-400 truncate">${n}</span></a>`;
+            return `<a data-filename="${n.toLowerCase().replace(/"/g,'&quot;')}" href="${src}" target="_blank" rel="noopener" class="dm-gallery-card rounded-xl p-2 transition"><img src="${src}" loading="lazy" alt="${n}" class="w-full aspect-square object-contain rounded-lg bg-gray-900"><span class="dm-file-name block mt-2 text-[11px] text-gray-300 truncate">${n}</span></a>`;
         }).join('') + '</div>';
+        document.addEventListener('input',e=>{if(e.target?.id==='dmGallerySearch'){const q=e.target.value.toLowerCase();document.querySelectorAll('#dmGalleryGrid [data-filename]').forEach(c=>c.style.display=c.dataset.filename.includes(q)?'':'none')}});
         // ===== CATÁLOGO DM ENERGY: contenido administrado desde GitHub =====
         function renderCreativeStudioDM() {
             const box = document.getElementById('viewer-content');
@@ -835,7 +973,23 @@
         }
         // ================================================================
 
+        let dmCarouselIndex=0, dmCarouselTimer=null;
+        function renderDMBanners(){
+          return `<section class="dm-carousel" id="dmCarousel" aria-label="Promociones DM Energy Studio">
+            <article class="dm-slide dm-show"><div class="dm-slide-art"><img class="dm-cat" src="Gato DJ cyberpunk con neón DM.png" alt="Gato DJ de DM Energy Studio"></div><div class="dm-slide-copy"><span class="dm-kicker">Bienvenido/a</span><h2>DM Energy <em>Studio</em></h2><p>“Inyectar actitud y energía a la vida diaria”</p><button class="dm-cta" onclick="dmOpenTools()">VER HERRAMIENTAS</button></div><button class="dm-carousel-arrow right" onclick="dmCarouselMove(1)" aria-label="Siguiente">›</button></article>
+            <article class="dm-slide"><div class="dm-slide-copy"><span class="dm-kicker">Todo en un solo sitio</span><h2>Prepara tus diseños <em>listos para imprimir</em></h2><p>Sublimación, DTF y serigrafía. Desde tu navegador, sin instalar nada.</p><button class="dm-cta" onclick="dmOpenTools()">ABRIR HERRAMIENTAS</button></div><div class="dm-banner-tools"><span class="dm-tool-chip">Escalador HD</span><span class="dm-tool-chip">Mi Metro DTF</span><span class="dm-tool-chip">Serigrafía</span><span class="dm-tool-chip">Sticker UV</span><span class="dm-tool-chip">Semitono DTF</span><span class="dm-tool-chip">Mockups</span><span class="dm-tool-chip">Tamaño</span><span class="dm-tool-chip">Bordes</span><span class="dm-tool-chip">Vectorizer</span></div><div class="dm-slide-art logo-only"><img class="dm-logo" src="logo.png" alt="DM Energy Studio"></div><button class="dm-carousel-arrow left" onclick="dmCarouselMove(-1)" aria-label="Anterior">‹</button><button class="dm-carousel-arrow right" onclick="dmCarouselMove(1)" aria-label="Siguiente">›</button></article>
+            <article class="dm-slide"><div class="dm-slide-copy"><span class="dm-kicker">Planes y lanzamiento</span><h2>Todo incluido, <em>un solo plan</em></h2><p>Accede a las herramientas y recursos de DM Energy Studio.</p><button class="dm-cta" onclick="selectCategory('Planes y pagos','__plans',false)">VER PLANES</button></div><div class="dm-slide-price"><div class="dm-price-card"><span class="dm-kicker">Mensual</span><strong>US$ 8</strong></div><div class="dm-price-card"><span class="dm-kicker">Anual</span><strong>US$ 67</strong></div></div><div class="dm-slide-art logo-only"><img class="dm-logo" src="logo.png" alt="DM Energy Studio"></div><button class="dm-carousel-arrow left" onclick="dmCarouselMove(-1)" aria-label="Anterior">‹</button></article>
+            <div class="dm-carousel-dots"><button class="active" onclick="dmCarouselGo(0)" aria-label="Banner 1"></button><button onclick="dmCarouselGo(1)" aria-label="Banner 2"></button><button onclick="dmCarouselGo(2)" aria-label="Banner 3"></button></div>
+          </section>`;
+        }
+        function dmOpenTools(){const buttons=[...document.querySelectorAll('#menuRoot button')];const b=buttons.find(x=>x.textContent.toLowerCase().includes('herramientas'));if(b)b.click();document.getElementById('appSidebar')?.scrollTo({top:document.getElementById('appSidebar').scrollHeight,behavior:'smooth'});}
+        function dmCarouselGo(i){const root=document.getElementById('dmCarousel');if(!root)return;const slides=[...root.querySelectorAll('.dm-slide')],dots=[...root.querySelectorAll('.dm-carousel-dots button')];dmCarouselIndex=(i+slides.length)%slides.length;slides.forEach((s,n)=>s.classList.toggle('dm-show',n===dmCarouselIndex));dots.forEach((d,n)=>d.classList.toggle('active',n===dmCarouselIndex));}
+        function dmCarouselMove(d){dmCarouselGo(dmCarouselIndex+d);}
+        function dmCarouselStart(){clearInterval(dmCarouselTimer);const root=document.getElementById('dmCarousel');if(!root)return;let startX=0;root.addEventListener('mouseenter',()=>clearInterval(dmCarouselTimer));root.addEventListener('mouseleave',()=>{if(!document.hidden)dmCarouselTimer=setInterval(()=>dmCarouselMove(1),6000)});root.addEventListener('touchstart',e=>{startX=e.touches[0].clientX;clearInterval(dmCarouselTimer)},{passive:true});root.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-startX;if(Math.abs(dx)>40)dmCarouselMove(dx<0?1:-1);if(!document.hidden)dmCarouselTimer=setInterval(()=>dmCarouselMove(1),6000)},{passive:true});root.addEventListener('mousedown',e=>{startX=e.clientX});root.addEventListener('mouseup',e=>{const dx=e.clientX-startX;if(Math.abs(dx)>60)dmCarouselMove(dx<0?1:-1)});if(!document.hidden)dmCarouselTimer=setInterval(()=>dmCarouselMove(1),6000);}
+        document.addEventListener('visibilitychange',()=>{if(document.hidden)clearInterval(dmCarouselTimer);else if(document.getElementById('dmCarousel'))dmCarouselStart()});
+
         async function selectCategory(label, folder, auto) {
+            document.querySelectorAll('#menuRoot .menu-link').forEach(a=>a.classList.toggle('dm-active',a.dataset.l===label));
             if (folder === '__plans') {
                 ++galleryToken;
                 document.getElementById('viewer-title').innerText = 'Planes y pagos';
@@ -926,10 +1080,11 @@
             const home = folder === '__home';
             document.getElementById('viewer-title').innerText = home ? 'Panel Principal - Selecciona una sección o categoría' : 'Visualizando: ' + label;
             if (home) {
-                box.innerHTML = WELCOME;
+                box.innerHTML = renderDMBanners();
+                dmCarouselStart();
                 try {
                     const n = await listImages('designs/inicio');
-                    if (token === galleryToken && n.length) box.innerHTML = gridHtml('designs/inicio', n);
+                    if (token === galleryToken && n.length) box.insertAdjacentHTML('beforeend', gridHtml('designs/inicio', n));
                 } catch (e) {}
             }
             else if (!folder) box.innerHTML = note('<b class="text-gray-200">' + label + '</b> estará disponible muy pronto.');
