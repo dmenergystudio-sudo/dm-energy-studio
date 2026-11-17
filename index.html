@@ -2287,6 +2287,11 @@
  .dm-slide-brandmark.plan-brand img{max-height:68px}
  .dm-carousel-arrow{opacity:.8!important;width:30px;height:30px}
 }
+/* FIX: mostrar únicamente la diapositiva activa del carrusel. */
+#dmCarousel .dm-slide:not(.dm-show){display:none!important}
+#dmCarousel .dm-slide.dm-show.dm-slide-imageonly{display:block!important}
+#dmCarousel .dm-slide.dm-show.dm-slide-tools,
+#dmCarousel .dm-slide.dm-show.dm-slide-plan{display:flex!important}
 </style>
 </body>
 </html>
