@@ -288,6 +288,32 @@
  .dm-slide-plan .dm-slide-price{display:none}
 }
 </style>
+
+<style id="dm-final-visual-fixes">
+/* Banner de bienvenida: anclar el encuadre arriba para que la cabeza completa del gato no quede cortada. */
+.dm-slide-imageonly .dm-welcome-full-art{object-fit:cover!important;object-position:center top!important;width:100%!important;height:100%!important;display:block!important}
+/* En pantallas pequeñas se conserva la proporción de la pieza original, sin recortar la cabeza. */
+@media(max-width:700px){.dm-slide-imageonly{aspect-ratio:1.5/1!important}.dm-slide-imageonly .dm-welcome-full-art{object-position:center top!important}}
+/* Las miniaturas quedan enmarcadas con el borde neón; los nombres de archivo no se muestran. */
+#viewer-content .dm-gallery-card{padding:5px!important;border:1px solid transparent!important;background:linear-gradient(#090d19,#090d19) padding-box,linear-gradient(135deg,#22d3ee,#e946a7) border-box!important;border-radius:14px!important;box-shadow:0 0 9px rgba(34,211,238,.12)!important}
+#viewer-content .dm-gallery-card img{display:block!important;padding:4px!important;border:2px solid transparent!important;border-radius:10px!important;background:linear-gradient(#0b1020,#0b1020) padding-box,linear-gradient(135deg,#22d3ee,#e946a7) border-box!important;box-shadow:0 0 10px rgba(34,211,238,.10),inset 0 0 8px rgba(236,72,153,.08)!important}
+#viewer-content .dm-gallery-card .dm-file-name{display:none!important;visibility:hidden!important;opacity:0!important;height:0!important;margin:0!important;padding:0!important}
+/* Garantiza que el carrusel mantenga una sola diapositiva visible. */
+#dmCarousel .dm-slide{display:none!important}
+#dmCarousel .dm-slide.dm-show{display:flex!important}
+#dmCarousel .dm-slide.dm-slide-imageonly.dm-show{display:block!important}
+</style>
+
+<style id="dm-final-review-verified">
+/* Banner principal: conservar la imagen completa y su proporción original 3:2. */
+#dmCarousel .dm-slide.dm-slide-imageonly{display:none!important;min-height:0!important;height:auto!important;aspect-ratio:3 / 2!important;overflow:hidden!important}
+#dmCarousel .dm-slide.dm-slide-imageonly.dm-show{display:block!important}
+#dmCarousel .dm-slide-imageonly .dm-welcome-full-art{display:block!important;width:100%!important;height:100%!important;max-width:none!important;object-fit:contain!important;object-position:center center!important}
+/* Galería: marco visible en cada miniatura y nombres de archivo siempre ocultos. */
+#viewer-content .dm-gallery-card{padding:5px!important;border:2px solid transparent!important;border-radius:14px!important;background:linear-gradient(#090d19,#090d19) padding-box,linear-gradient(135deg,#22d3ee,#e946a7) border-box!important;overflow:hidden!important}
+#viewer-content .dm-gallery-card img{box-sizing:border-box!important;border:2px solid transparent!important;border-radius:10px!important;background:linear-gradient(#0b1020,#0b1020) padding-box,linear-gradient(135deg,#22d3ee,#e946a7) border-box!important}
+#viewer-content .dm-gallery-card .dm-file-name{display:none!important;visibility:hidden!important;opacity:0!important}
+</style>
 </head>
 <body class="bg-darkBg text-gray-100 font-sans antialiased h-screen overflow-hidden flex flex-col">
 
@@ -1052,7 +1078,22 @@
         function dmOpenTools(){const buttons=[...document.querySelectorAll('#menuRoot button')];const b=buttons.find(x=>x.textContent.toLowerCase().includes('herramientas'));if(b)b.click();document.getElementById('appSidebar')?.scrollTo({top:document.getElementById('appSidebar').scrollHeight,behavior:'smooth'});}
         function dmCarouselGo(i){const root=document.getElementById('dmCarousel');if(!root)return;const slides=[...root.querySelectorAll('.dm-slide')],dots=[...root.querySelectorAll('.dm-carousel-dots button')];dmCarouselIndex=(i+slides.length)%slides.length;slides.forEach((s,n)=>s.classList.toggle('dm-show',n===dmCarouselIndex));dots.forEach((d,n)=>d.classList.toggle('active',n===dmCarouselIndex));}
         function dmCarouselMove(d){dmCarouselGo(dmCarouselIndex+d);}
-        function dmCarouselStart(){clearInterval(dmCarouselTimer);const root=document.getElementById('dmCarousel');if(!root)return;let startX=0;root.addEventListener('mouseenter',()=>clearInterval(dmCarouselTimer));root.addEventListener('mouseleave',()=>{if(!document.hidden)dmCarouselTimer=setInterval(()=>dmCarouselMove(1),6000)});root.addEventListener('touchstart',e=>{startX=e.touches[0].clientX;clearInterval(dmCarouselTimer)},{passive:true});root.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-startX;if(Math.abs(dx)>40)dmCarouselMove(dx<0?1:-1);if(!document.hidden)dmCarouselTimer=setInterval(()=>dmCarouselMove(1),6000)},{passive:true});root.addEventListener('mousedown',e=>{startX=e.clientX});root.addEventListener('mouseup',e=>{const dx=e.clientX-startX;if(Math.abs(dx)>60)dmCarouselMove(dx<0?1:-1)});if(!document.hidden)dmCarouselTimer=setInterval(()=>dmCarouselMove(1),6000);}
+        function dmCarouselStart(){
+          clearInterval(dmCarouselTimer);
+          const root=document.getElementById('dmCarousel');
+          if(!root)return;
+          // Los controles táctiles se registran una sola vez. El avance automático
+          // no se detiene al dejar el puntero sobre el banner.
+          if(!root.dataset.dmControlsBound){
+            let startX=0;
+            root.addEventListener('touchstart',e=>{startX=e.touches[0].clientX},{passive:true});
+            root.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-startX;if(Math.abs(dx)>40)dmCarouselMove(dx<0?1:-1)},{passive:true});
+            root.addEventListener('mousedown',e=>{startX=e.clientX});
+            root.addEventListener('mouseup',e=>{const dx=e.clientX-startX;if(Math.abs(dx)>60)dmCarouselMove(dx<0?1:-1)});
+            root.dataset.dmControlsBound='1';
+          }
+          if(!document.hidden) dmCarouselTimer=setInterval(()=>dmCarouselMove(1),5000);
+        }
         document.addEventListener('visibilitychange',()=>{if(document.hidden)clearInterval(dmCarouselTimer);else if(document.getElementById('dmCarousel'))dmCarouselStart()});
 
         async function selectCategory(label, folder, auto) {
@@ -2287,11 +2328,6 @@
  .dm-slide-brandmark.plan-brand img{max-height:68px}
  .dm-carousel-arrow{opacity:.8!important;width:30px;height:30px}
 }
-/* FIX: mostrar únicamente la diapositiva activa del carrusel. */
-#dmCarousel .dm-slide:not(.dm-show){display:none!important}
-#dmCarousel .dm-slide.dm-show.dm-slide-imageonly{display:block!important}
-#dmCarousel .dm-slide.dm-show.dm-slide-tools,
-#dmCarousel .dm-slide.dm-show.dm-slide-plan{display:flex!important}
 </style>
 </body>
 </html>
