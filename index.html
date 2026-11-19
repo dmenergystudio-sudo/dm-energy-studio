@@ -812,8 +812,11 @@
             // Respaldo temporal: fecha global confirmada para esta prueba.
             // Si dm_config no es legible por permisos RLS, el acceso no debe bloquear
             // a todos los usuarios durante el periodo de prueba ya anunciado.
-            const trialEndValue = globalConfig?.valor || '2026-11-20 23:59:59-05';
-            const globalTrialEnd = new Date(String(trialEndValue).replace(' ', 'T'));
+            const trialEndValue = globalConfig?.valor || '2026-11-20T23:59:59-05:00';
+            let trialEndIso = String(trialEndValue).trim().replace(' ', 'T');
+            // JavaScript exige que el desfase horario incluya los dos puntos: -05:00.
+            trialEndIso = trialEndIso.replace(/([+-]\d{2})$/, '$1:00');
+            const globalTrialEnd = new Date(trialEndIso);
             const trialValid = !Number.isNaN(globalTrialEnd.getTime()) && now <= globalTrialEnd;
             const paidDateValid = !profile.paid_until || new Date(profile.paid_until + 'T23:59:59');
             const paidValid = profile.paid_access === true && (!profile.paid_until || paidDateValid >= now);
