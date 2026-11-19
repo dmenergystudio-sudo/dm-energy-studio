@@ -796,7 +796,7 @@
             if (!user) return false;
             dmCurrentUser = user;
             const { data: profile, error } = await dmSupabase
-                .from('profiles').select('id,email,paid_access,paid_at,plan,paid_until,is_admin')
+                .from('profiles').select('id,email,paid_access,plan,paid_until,is_admin')
                 .eq('id', user.id).single();
             if (error || !profile) {
                 document.getElementById('authOverlay').style.display = 'flex';
@@ -809,10 +809,12 @@
             const { data: globalConfig, error: configError } = await dmSupabase
                 .from('dm_config').select('valor').eq('clave', 'prueba_hasta').maybeSingle();
             const now = new Date();
-            const globalTrialEnd = globalConfig?.valor
-                ? new Date(String(globalConfig.valor).replace(' ', 'T'))
-                : null;
-            const trialValid = !configError && globalTrialEnd && !Number.isNaN(globalTrialEnd.getTime()) && now <= globalTrialEnd;
+            // Respaldo temporal: fecha global confirmada para esta prueba.
+            // Si dm_config no es legible por permisos RLS, el acceso no debe bloquear
+            // a todos los usuarios durante el periodo de prueba ya anunciado.
+            const trialEndValue = globalConfig?.valor || '2026-11-20 23:59:59-05';
+            const globalTrialEnd = new Date(String(trialEndValue).replace(' ', 'T'));
+            const trialValid = !Number.isNaN(globalTrialEnd.getTime()) && now <= globalTrialEnd;
             const paidDateValid = !profile.paid_until || new Date(profile.paid_until + 'T23:59:59');
             const paidValid = profile.paid_access === true && (!profile.paid_until || paidDateValid >= now);
             const isAdmin = profile.is_admin === true;
@@ -820,11 +822,7 @@
 
             if (!allowed) {
                 document.getElementById('authOverlay').style.display = 'flex';
-                if (configError || !globalConfig?.valor || !globalTrialEnd || Number.isNaN(globalTrialEnd.getTime())) {
-                    authError('No se pudo consultar la fecha global de prueba en dm_config (clave prueba_hasta, valor). Detalle: ' + (configError?.message || 'No se encontró una fecha válida. Revisa que la tabla dm_config permita lectura de clave y valor.'));
-                } else {
-                    authError('La prueba gratuita global terminó el ' + globalTrialEnd.toLocaleString('es-PE') + '. Para activar el acceso completo, solicita el pago único por WhatsApp.');
-                }
+                authError('La prueba gratuita global terminó el ' + globalTrialEnd.toLocaleString('es-PE') + '. Para activar el acceso completo, solicita el pago único por WhatsApp.');
                 return false;
             }
 
