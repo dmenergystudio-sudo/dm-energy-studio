@@ -805,12 +805,12 @@
                 return false;
             }
 
-            // Fecha única para todos los usuarios: se administra desde Supabase > dm_config > prueba_hasta.
+            // Fecha única para todos los usuarios: se lee de dm_config usando clave/valor.
             const { data: globalConfig, error: configError } = await dmSupabase
-                .from('dm_config').select('prueba_hasta').limit(1).maybeSingle();
+                .from('dm_config').select('valor').eq('clave', 'prueba_hasta').maybeSingle();
             const now = new Date();
-            const globalTrialEnd = globalConfig?.prueba_hasta
-                ? new Date(String(globalConfig.prueba_hasta).replace(' ', 'T'))
+            const globalTrialEnd = globalConfig?.valor
+                ? new Date(String(globalConfig.valor).replace(' ', 'T'))
                 : null;
             const trialValid = !configError && globalTrialEnd && !Number.isNaN(globalTrialEnd.getTime()) && now <= globalTrialEnd;
             const paidDateValid = !profile.paid_until || new Date(profile.paid_until + 'T23:59:59');
@@ -820,8 +820,8 @@
 
             if (!allowed) {
                 document.getElementById('authOverlay').style.display = 'flex';
-                if (configError || !globalConfig?.prueba_hasta || !globalTrialEnd || Number.isNaN(globalTrialEnd.getTime())) {
-                    authError('No se pudo consultar la fecha global de prueba en dm_config.prueba_hasta. Detalle: ' + (configError?.message || 'No se encontró una fecha válida. Revisa que la tabla dm_config permita lectura de prueba_hasta.'));
+                if (configError || !globalConfig?.valor || !globalTrialEnd || Number.isNaN(globalTrialEnd.getTime())) {
+                    authError('No se pudo consultar la fecha global de prueba en dm_config (clave prueba_hasta, valor). Detalle: ' + (configError?.message || 'No se encontró una fecha válida. Revisa que la tabla dm_config permita lectura de clave y valor.'));
                 } else {
                     authError('La prueba gratuita global terminó el ' + globalTrialEnd.toLocaleString('es-PE') + '. Para activar el acceso completo, solicita el pago único por WhatsApp.');
                 }
