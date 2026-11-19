@@ -805,19 +805,38 @@
                 return false;
             }
 
-            // Fecha única para todos los usuarios: se lee de dm_config usando clave/valor.
-            const { data: globalConfig, error: configError } = await dmSupabase
-                .from('dm_config').select('valor').eq('clave', 'prueba_hasta').maybeSingle();
+            // Fecha única para todos los usuarios. Se acepta ISO y formatos habituales
+            // que Supabase/Postgres puede devolver; las fechas sin zona se interpretan en Perú.
+            function parseTrialDate(value) {
+                if (value == null || value === '') return null;
+                const raw = String(value).trim();
+                const candidates = [raw, raw.replace(' ', 'T')];
+                for (let candidate of candidates) {
+                    candidate = candidate.replace(/([+-]\\d{2})$/, '$1:00');
+                    let parsed = new Date(candidate);
+                    if (!Number.isNaN(parsed.getTime())) return parsed;
+                }
+                let match = raw.match(/^(\\d{4})-(\\d{2})-(\\d{2})(?:[ T](\\d{2}):(\\d{2})(?::(\\d{2}))?)?$/);
+                if (match) {
+                    const [, y, mo, d, h='23', mi='59', sec='59'] = match;
+                    return new Date(`${y}-${mo}-${d}T${h}:${mi}:${sec}-05:00`);
+                }
+                match = raw.match(/^(\\d{1,2})[\\/-](\\d{1,2})[\\/-](\\d{4})(?:[ ,T]+(\\d{2}):(\\d{2})(?::(\\d{2}))?)?$/);
+                if (match) {
+                    const [, d, mo, y, h='23', mi='59', sec='59'] = match;
+                    return new Date(`${y}-${mo.padStart(2,'0')}-${d.padStart(2,'0')}T${h}:${mi}:${sec}-05:00`);
+                }
+                return null;
+            }
+
             const now = new Date();
-            // Respaldo temporal: fecha global confirmada para esta prueba.
-            // Si dm_config no es legible por permisos RLS, el acceso no debe bloquear
-            // a todos los usuarios durante el periodo de prueba ya anunciado.
-            const trialEndValue = globalConfig?.valor || '2026-11-20T23:59:59-05:00';
-            let trialEndIso = String(trialEndValue).trim().replace(' ', 'T');
-            // JavaScript exige que el desfase horario incluya los dos puntos: -05:00.
-            trialEndIso = trialEndIso.replace(/([+-]\d{2})$/, '$1:00');
-            const globalTrialEnd = new Date(trialEndIso);
-            const trialValid = !Number.isNaN(globalTrialEnd.getTime()) && now <= globalTrialEnd;
+            const configuredTrialEnd = parseTrialDate(globalConfig?.valor);
+            // Respaldo hasta el 20 de noviembre de 2026, 23:59:59 hora de Perú.
+            // Si la fila de dm_config contiene una fecha vieja o ilegible, no bloquea el acceso.
+            const fallbackTrialEnd = new Date('2026-11-20T23:59:59-05:00');
+            const globalTrialEnd = configuredTrialEnd && configuredTrialEnd > fallbackTrialEnd
+                ? configuredTrialEnd : fallbackTrialEnd;
+            const trialValid = now <= globalTrialEnd;
             const paidDateValid = !profile.paid_until || new Date(profile.paid_until + 'T23:59:59');
             const paidValid = profile.paid_access === true && (!profile.paid_until || paidDateValid >= now);
             const isAdmin = profile.is_admin === true;
